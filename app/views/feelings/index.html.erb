@@ -1,0 +1,31 @@
+<h1>Listing feelings</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Feeling card</th>
+      <th>Experience</th>
+      <th>Note</th>
+      <th>Deleted at</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @feelings.each do |feeling| %>
+      <tr>
+        <td><%= feeling.feeling_card %></td>
+        <td><%= feeling.experience %></td>
+        <td><%= feeling.note %></td>
+        <td><%= feeling.deleted_at %></td>
+        <td><%= link_to 'Show', feeling %></td>
+        <td><%= link_to 'Edit', edit_feeling_path(feeling) %></td>
+        <td><%= link_to 'Destroy', feeling, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Feeling', new_feeling_path %>

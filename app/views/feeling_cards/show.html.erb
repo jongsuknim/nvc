@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Super category:</strong>
+  <%= @feeling_card.super_category %>
+</p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @feeling_card.category %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @feeling_card.title %>
+</p>
+
+<%= link_to 'Edit', edit_feeling_card_path(@feeling_card) %> |
+<%= link_to 'Back', feeling_cards_path %>

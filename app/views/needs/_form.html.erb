@@ -1,0 +1,33 @@
+<%= form_for(@need) do |f| %>
+  <% if @need.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@need.errors.count, "error") %> prohibited this need from being saved:</h2>
+
+      <ul>
+      <% @need.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :need_card_id %><br>
+    <%= f.text_field :need_card_id %>
+  </div>
+  <div class="field">
+    <%= f.label :feeling_id %><br>
+    <%= f.text_field :feeling_id %>
+  </div>
+  <div class="field">
+    <%= f.label :note %><br>
+    <%= f.text_field :note %>
+  </div>
+  <div class="field">
+    <%= f.label :deleted_at %><br>
+    <%= f.datetime_select :deleted_at %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

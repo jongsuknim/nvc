@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Observation:</strong>
+  <%= @experience.observation %>
+</p>
+
+<p>
+  <strong>Request:</strong>
+  <%= @experience.request %>
+</p>
+
+<p>
+  <strong>Memo:</strong>
+  <%= @experience.memo %>
+</p>
+
+<p>
+  <strong>Deleted at:</strong>
+  <%= @experience.deleted_at %>
+</p>
+
+<%= link_to 'Edit', edit_experience_path(@experience) %> |
+<%= link_to 'Back', experiences_path %>

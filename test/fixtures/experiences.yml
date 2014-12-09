@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  observation: MyString
+  request: MyString
+  memo: MyString
+  deleted_at: 2014-12-10 00:06:24
+
+two:
+  observation: MyString
+  request: MyString
+  memo: MyString
+  deleted_at: 2014-12-10 00:06:24

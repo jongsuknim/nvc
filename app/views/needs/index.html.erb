@@ -1,0 +1,31 @@
+<h1>Listing needs</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Need card</th>
+      <th>Feeling</th>
+      <th>Note</th>
+      <th>Deleted at</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @needs.each do |need| %>
+      <tr>
+        <td><%= need.need_card %></td>
+        <td><%= need.feeling %></td>
+        <td><%= need.note %></td>
+        <td><%= need.deleted_at %></td>
+        <td><%= link_to 'Show', need %></td>
+        <td><%= link_to 'Edit', edit_need_path(need) %></td>
+        <td><%= link_to 'Destroy', need, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Need', new_need_path %>

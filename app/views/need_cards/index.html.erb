@@ -1,0 +1,27 @@
+<h1>Listing need_cards</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Category</th>
+      <th>Title</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @need_cards.each do |need_card| %>
+      <tr>
+        <td><%= need_card.category %></td>
+        <td><%= need_card.title %></td>
+        <td><%= link_to 'Show', need_card %></td>
+        <td><%= link_to 'Edit', edit_need_card_path(need_card) %></td>
+        <td><%= link_to 'Destroy', need_card, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Need card', new_need_card_path %>

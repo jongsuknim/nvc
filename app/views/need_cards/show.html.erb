@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @need_card.category %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @need_card.title %>
+</p>
+
+<%= link_to 'Edit', edit_need_card_path(@need_card) %> |
+<%= link_to 'Back', need_cards_path %>

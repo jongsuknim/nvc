@@ -1,0 +1,29 @@
+<h1>Listing feeling_cards</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Super category</th>
+      <th>Category</th>
+      <th>Title</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @feeling_cards.each do |feeling_card| %>
+      <tr>
+        <td><%= feeling_card.super_category %></td>
+        <td><%= feeling_card.category %></td>
+        <td><%= feeling_card.title %></td>
+        <td><%= link_to 'Show', feeling_card %></td>
+        <td><%= link_to 'Edit', edit_feeling_card_path(feeling_card) %></td>
+        <td><%= link_to 'Destroy', feeling_card, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Feeling card', new_feeling_card_path %>

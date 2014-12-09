@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Need card:</strong>
+  <%= @need.need_card %>
+</p>
+
+<p>
+  <strong>Feeling:</strong>
+  <%= @need.feeling %>
+</p>
+
+<p>
+  <strong>Note:</strong>
+  <%= @need.note %>
+</p>
+
+<p>
+  <strong>Deleted at:</strong>
+  <%= @need.deleted_at %>
+</p>
+
+<%= link_to 'Edit', edit_need_path(@need) %> |
+<%= link_to 'Back', needs_path %>

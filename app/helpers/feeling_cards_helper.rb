@@ -1,0 +1,2 @@
+module FeelingCardsHelper
+end
