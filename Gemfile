@@ -53,3 +53,5 @@ gem 'less-rails'
 gem 'simple_form'
 gem 'sprockets', '~> 2.8' 
 gem 'jquery-turbolinks'
+
+gem 'devise'
