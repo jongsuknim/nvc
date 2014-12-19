@@ -14,7 +14,20 @@ class NeedsController < ApplicationController
 
   # GET /needs/new
   def new
-    @need = Need.new
+    not_finished_needs = Need.get_not_finished
+    not_finished_needs = not_finished_needs.where(feeling_id: params[:feeling_id]) if params[:feeling_id]
+    @categories = NeedCard.get_categories
+    if not_finished_needs.empty?
+      @need = Need.new
+      @feeling_id = params[:feeling_id]
+    else
+      @need = not_finished_needs.first
+      @needs =@need.get_needs
+      @feeling_id = @need.feeling_id
+    end
+    puts @feeling_id
+    @feeling_title = Feeling.find(@feeling_id).feeling_card.title if @feeling_id
+    puts @feeling_title
   end
 
   # GET /needs/1/edit
@@ -28,7 +41,7 @@ class NeedsController < ApplicationController
 
     respond_to do |format|
       if @need.save
-        format.html { redirect_to @need, notice: 'Need was successfully created.' }
+        format.html { redirect_to new_need_path}
         format.json { render :show, status: :created, location: @need }
       else
         format.html { render :new }
@@ -40,9 +53,11 @@ class NeedsController < ApplicationController
   # PATCH/PUT /needs/1
   # PATCH/PUT /needs/1.json
   def update
+    puts "update #{@need.as_json} #{updated_params.as_json}"
     respond_to do |format|
-      if @need.update(need_params)
-        format.html { redirect_to @need, notice: 'Need was successfully updated.' }
+      if @need.update(updated_params)
+        puts "brucep update success"
+        format.html { redirect_to new_need_path }
         format.json { render :show, status: :ok, location: @need }
       else
         format.html { render :edit }
@@ -67,8 +82,21 @@ class NeedsController < ApplicationController
       @need = Need.find(params[:id])
     end
 
+    def updated_params
+      new_params = need_params
+      puts "before"
+      puts new_params
+      if new_params[:category] != @need.category
+        new_params.delete(:vneed) if new_params[:vneed]
+      end
+      puts "after"
+      puts new_params
+      new_params
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def need_params
-      params.require(:need).permit(:need_card_id, :feeling_id, :note, :deleted_at)
+      puts params.as_json
+      params.require(:need).permit(:category, :vneed, :feeling_id, :note)
     end
 end

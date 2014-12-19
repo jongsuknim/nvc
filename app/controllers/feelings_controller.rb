@@ -14,7 +14,17 @@ class FeelingsController < ApplicationController
 
   # GET /feelings/new
   def new
-    @feeling = Feeling.new
+    notfinished_feelings = Feeling.get_not_finished_feelings
+    puts "new #{notfinished_feelings.as_json}"
+    @super_categories = FeelingCard.get_super_categories
+    unless notfinished_feelings.empty?
+      @feeling = notfinished_feelings.first
+      @categories = @feeling.get_categories
+      @feelings = @feeling.get_feelings
+    else
+      @feeling = Feeling.new
+      @is_new = true
+    end
   end
 
   # GET /feelings/1/edit
@@ -28,11 +38,12 @@ class FeelingsController < ApplicationController
 
     respond_to do |format|
       if @feeling.save
-        format.html { redirect_to @feeling, notice: 'Feeling was successfully created.' }
+        format.html { redirect_to new_feeling_path }
+        #format.js
         format.json { render :show, status: :created, location: @feeling }
       else
         format.html { render :new }
-        format.json { render json: @feeling.errors, status: :unprocessable_entity }
+        #format.json { render json: @feeling.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -40,10 +51,14 @@ class FeelingsController < ApplicationController
   # PATCH/PUT /feelings/1
   # PATCH/PUT /feelings/1.json
   def update
+    puts "update #{@feeling.as_json} #{updated_params.as_json}"
     respond_to do |format|
-      if @feeling.update(feeling_params)
-        format.html { redirect_to @feeling, notice: 'Feeling was successfully updated.' }
+      if @feeling.update(updated_params)
+        puts "brucep update success"
+        #format.html { redirect_to @feeling, notice: 'Feeling was successfully updated.' }
+        format.html { redirect_to new_feeling_path }
         format.json { render :show, status: :ok, location: @feeling }
+        #format.js
       else
         format.html { render :edit }
         format.json { render json: @feeling.errors, status: :unprocessable_entity }
@@ -67,8 +82,16 @@ class FeelingsController < ApplicationController
       @feeling = Feeling.find(params[:id])
     end
 
+    def updated_params
+      new_params = feeling_params
+      if new_params[:category] != @feeling.category || new_params[:super_category] != @feeling.super_category
+        new_params.delete(:vfeeling) if new_params[:vfeeling]
+      end
+      new_params
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def feeling_params
-      params.require(:feeling).permit(:feeling_card_id, :experience_id, :note, :deleted_at)
+      params.require(:feeling).permit(:feeling_card_id, :super_category, :category, :vfeeling, :experience_id, :note)
     end
 end

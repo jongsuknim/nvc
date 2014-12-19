@@ -4,6 +4,7 @@ class CreateExperiences < ActiveRecord::Migration
       t.string :observation
       t.string :request
       t.string :memo
+      t.string :status
       t.datetime :deleted_at
 
       t.timestamps

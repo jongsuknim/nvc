@@ -3,6 +3,8 @@ class CreateFeelings < ActiveRecord::Migration
     create_table :feelings do |t|
       t.belongs_to :feeling_card, index: true
       t.belongs_to :experience, index: true
+      t.string :super_category
+      t.string :category
       t.string :note
       t.datetime :deleted_at
 

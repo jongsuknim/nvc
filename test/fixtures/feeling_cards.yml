@@ -1,11 +1,41 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  super_category: MyString
-  category: MyString
-  title: MyString
+  super_category: sca
+  category: ca
+  title: t1
 
 two:
-  super_category: MyString
-  category: MyString
-  title: MyString
+  super_category: sca
+  category: ca
+  title: t2
+
+three:
+  super_category: sca
+  category: cb
+  title: t3
+
+four:
+  super_category: sca
+  category: cb
+  title: t4
+
+five:
+  super_category: scb
+  category: ca
+  title: t5
+
+six:
+  super_category: scb
+  category: ca
+  title: t6
+
+seven:
+  super_category: scb
+  category: cb
+  title: t7
+
+eight:
+  super_category: scb
+  category: cb
+  title: t8

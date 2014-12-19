@@ -4,10 +4,8 @@ one:
   need_card_id: 
   feeling_id: 
   note: MyString
-  deleted_at: 2014-12-10 00:15:16
 
 two:
   need_card_id: 
   feeling_id: 
   note: MyString
-  deleted_at: 2014-12-10 00:15:16

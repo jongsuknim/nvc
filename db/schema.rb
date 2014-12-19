@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(version: 20141209152628) do
     t.string   "observation"
     t.string   "request"
     t.string   "memo"
+    t.string   "status"
     t.datetime "deleted_at"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -35,6 +36,8 @@ ActiveRecord::Schema.define(version: 20141209152628) do
   create_table "feelings", force: true do |t|
     t.integer  "feeling_card_id"
     t.integer  "experience_id"
+    t.string   "super_category"
+    t.string   "category"
     t.string   "note"
     t.datetime "deleted_at"
     t.datetime "created_at"
@@ -55,6 +58,7 @@ ActiveRecord::Schema.define(version: 20141209152628) do
   create_table "needs", force: true do |t|
     t.integer  "need_card_id"
     t.integer  "feeling_id"
+    t.string   "category"
     t.string   "note"
     t.datetime "deleted_at"
     t.datetime "created_at"

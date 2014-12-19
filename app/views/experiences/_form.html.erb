@@ -1,33 +1,12 @@
-<%= form_for(@experience) do |f| %>
-  <% if @experience.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@experience.errors.count, "error") %> prohibited this experience from being saved:</h2>
-
-      <ul>
-      <% @experience.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :observation %><br>
-    <%= f.text_field :observation %>
-  </div>
-  <div class="field">
-    <%= f.label :request %><br>
-    <%= f.text_field :request %>
-  </div>
-  <div class="field">
-    <%= f.label :memo %><br>
-    <%= f.text_field :memo %>
-  </div>
-  <div class="field">
-    <%= f.label :deleted_at %><br>
-    <%= f.datetime_select :deleted_at %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+<%= simple_form_for(@experience) do |f| %>
+    <br>
+    <h4>(평가나 의견을 배제한) 상황은 어땠어?</h4>
+    <%= f.input :observation, label: false, as: :text, input_html: { :rows => 3,  :cols => 30 } %>
+    <br>
+    <h4>자신에게 어떻게 했으면.. 요청하는게 있어?</h4>
+    <%= f.input :request, label: false, as: :text, input_html: { :rows => 3, :cols => 30 }  %>
+    <br>
+    <h4>더 할말이 있어?</h4>
+    <%= f.input :memo, label: false, as: :text, input_html: { :rows => 3, :cols => 30 }  %>
+    <%= f.button :submit %>
 <% end %>

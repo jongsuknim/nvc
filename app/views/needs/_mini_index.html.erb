@@ -1,0 +1,6 @@
+<% floating_needs.each do |need| %>
+    <% if need.need_card %>
+        [<%= need.need_card.title %>
+        <%= link_to 'Del', need, method: :delete, data: { confirm: 'Are you sure?' } %>]
+    <% end %>
+<% end %>

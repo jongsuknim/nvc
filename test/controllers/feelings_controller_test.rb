@@ -46,4 +46,5 @@ class FeelingsControllerTest < ActionController::TestCase
 
     assert_redirected_to feelings_path
   end
+
 end

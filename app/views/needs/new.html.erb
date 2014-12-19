@@ -1,5 +1,9 @@
-<h1>New need</h1>
+<% if @feeling_title %>
+    <h2>'<%= @feeling_title %>'?</h2>
 
-<%= render 'form' %>
+    <%= render 'form' %>
 
-<%= link_to 'Back', needs_path %>
+<% else %>
+    <h2>느낌을 먼저 말해봐</h2>
+<% end %>
+

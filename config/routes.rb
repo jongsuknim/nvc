@@ -7,13 +7,18 @@ Rails.application.routes.draw do
 
   resources :feelings
 
-  resources :experiences
+  resources :experiences do
+    #get 'create_feeling', on: :collection
+    #get 'create_need', on: :collection
+    #get 'create_final', on: :collection
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
+  root 'feelings#new'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

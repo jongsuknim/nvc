@@ -1,25 +1,8 @@
-<%= form_for(@need_card) do |f| %>
-  <% if @need_card.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@need_card.errors.count, "error") %> prohibited this need_card from being saved:</h2>
+<%= simple_form_for @need_card do |f| %>
 
-      <ul>
-      <% @need_card.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+    <%= f.input :category, collection: @categories, as: :radio_buttons %>
+    <%= f.input :vfeeling, collection: @categories, as: :radio_buttons %>
 
-  <div class="field">
-    <%= f.label :category %><br>
-    <%= f.text_field :category %>
-  </div>
-  <div class="field">
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+    <%= f.input :note %>
+    <%= f.button :submit %>
 <% end %>

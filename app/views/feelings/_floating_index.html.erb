@@ -1,0 +1,7 @@
+<% floating_feelings.each do |feeling| %>
+    <%= feeling.feeling_card.title %>
+    (<%= link_to 'Need', new_need_path(feeling_id: feeling.id)  %>
+    <%= link_to 'Del', feeling, method: :delete, data: { confirm: 'Are you sure?' } %>) &rarr;
+    <%= render 'needs/mini_index', floating_needs: feeling.needs %>
+    <br>
+<% end %>

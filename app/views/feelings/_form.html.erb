@@ -1,33 +1,25 @@
-<%= form_for(@feeling) do |f| %>
-  <% if @feeling.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@feeling.errors.count, "error") %> prohibited this feeling from being saved:</h2>
+<%= simple_form_for @feeling do |f| %>
 
-      <ul>
-      <% @feeling.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+    <br>
+    <% if @is_new %>
+        <%= f.input :super_category, label: false, collection: @super_categories, as: :radio_buttons %>
+    <% else %>
+        <br>
+        <%= f.input :super_category, label: false, collection: @super_categories, as: :radio_buttons, input_html: {value: f.object.super_category} %>
+        <br>
+        <h4>어떤 종류의 느낌이야?</h4>
+        <%= f.input :category, label: false, collection: @categories, as: :radio_buttons %>
 
-  <div class="field">
-    <%= f.label :feeling_card_id %><br>
-    <%= f.text_field :feeling_card_id %>
-  </div>
-  <div class="field">
-    <%= f.label :experience_id %><br>
-    <%= f.text_field :experience_id %>
-  </div>
-  <div class="field">
-    <%= f.label :note %><br>
-    <%= f.text_field :note %>
-  </div>
-  <div class="field">
-    <%= f.label :deleted_at %><br>
-    <%= f.datetime_select :deleted_at %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+        <% if @feelings %>
+            <br>
+            <h4>더 자세히 말해줄래?</h4>
+            <%= f.input :vfeeling, label: false, collection: @feelings, as: :radio_buttons %>
+            <br>
+            <h4>좀 더 이야기 할래?</h4>
+            <%= f.input :note, label: false, as: :text, input_html: { :rows => 3, :cols => 30 }  %>
+            <br>
+            <%= f.button :submit %>
+        <% end %>
+    <% end %>
+    <br>
 <% end %>

@@ -6,6 +6,9 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+FeelingCard.destroy_all
+NeedCard.destroy_all
+
 # feeling_card
 super_category = '욕구 충족'
 category = '감동받은'

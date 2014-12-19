@@ -36,7 +36,13 @@ gem 'spring',        group: :development
 # gem 'capistrano-rails', group: :development
 
 # Use debugger
-gem 'debugger', group: [:development, :test]
+#gem 'debugger', group: [:development, :test]
+group :development do
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'meta_request'
+  gem 'debugger'
+end
 
 gem 'paranoia', '~> 2.0'
 
@@ -44,3 +50,6 @@ gem 'twitter-bootstrap-rails'
 gem 'therubyracer'
 gem 'less-rails'
 
+gem 'simple_form'
+gem 'sprockets', '~> 2.8' 
+gem 'jquery-turbolinks'
