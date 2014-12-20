@@ -29,6 +29,7 @@ class ExperiencesController < ApplicationController
 
     respond_to do |format|
       if @experience.save
+        puts UserNotifier.test.deliver
         format.html { redirect_to @experience, notice: 'Experience was successfully created.' }
         format.json { render :show, status: :created, location: @experience }
       else
