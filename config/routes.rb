@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  devise_for :users, controllers: { sessions: "users/sessions" }
+  devise_for :users, controllers: {
+                       sessions: "users/sessions",
+                       confirmations: "users/confirmations",
+                       registrations: "users/registrations"
+                   }
   resources :feeling_cards
 
   resources :need_cards
