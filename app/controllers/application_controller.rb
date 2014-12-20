@@ -15,6 +15,6 @@ class ApplicationController < ActionController::Base
 
   private
   def set_floating_feelings
-    @floating_feelings = Feeling.get_floatings
+    @floating_feelings = Feeling.get_floatings(current_user)
   end
 end

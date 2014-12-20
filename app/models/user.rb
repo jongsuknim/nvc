@@ -6,4 +6,8 @@ class User < ActiveRecord::Base
          :confirmable, :lockable
 
 
+  has_many :experiences, dependent: :destroy
+  has_many :feelings, dependent: :destroy
+  has_many :needs, dependent: :destroy
+
 end

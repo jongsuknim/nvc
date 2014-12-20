@@ -1,9 +1,11 @@
 class Need < ActiveRecord::Base
+
+  belongs_to :user
   belongs_to :need_card
   belongs_to :feeling
 
-  def self.get_not_finished
-    where(need_card_id: nil)
+  def self.get_not_finished(user)
+    where(user: user).where(need_card_id: nil)
   end
 
   def get_needs

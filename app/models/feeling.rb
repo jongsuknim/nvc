@@ -1,17 +1,17 @@
 class Feeling < ActiveRecord::Base
 
-
+  belongs_to :user
   belongs_to :feeling_card
   belongs_to :experience
 
   has_many :needs, dependent: :destroy
 
-  def self.get_not_finished_feelings
-    where(feeling_card_id: nil)
+  def self.get_not_finished_feelings(user)
+    where(user: user).where(feeling_card_id: nil)
   end
 
-  def self.get_floatings
-    where("feeling_card_id is not null").where(experience_id: nil)
+  def self.get_floatings(user)
+    where(user: user).where("feeling_card_id is not null").where(experience_id: nil)
   end
 
   def get_super_categories

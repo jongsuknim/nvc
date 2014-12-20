@@ -14,6 +14,7 @@
 ActiveRecord::Schema.define(version: 20141219103655) do
 
   create_table "experiences", force: true do |t|
+    t.integer  "user_id"
     t.string   "observation"
     t.string   "request"
     t.string   "memo"
@@ -24,6 +25,7 @@ ActiveRecord::Schema.define(version: 20141219103655) do
   end
 
   add_index "experiences", ["deleted_at"], name: "index_experiences_on_deleted_at"
+  add_index "experiences", ["user_id"], name: "index_experiences_on_user_id"
 
   create_table "feeling_cards", force: true do |t|
     t.string   "super_category"
@@ -34,6 +36,7 @@ ActiveRecord::Schema.define(version: 20141219103655) do
   end
 
   create_table "feelings", force: true do |t|
+    t.integer  "user_id"
     t.integer  "feeling_card_id"
     t.integer  "experience_id"
     t.string   "super_category"
@@ -47,6 +50,7 @@ ActiveRecord::Schema.define(version: 20141219103655) do
   add_index "feelings", ["deleted_at"], name: "index_feelings_on_deleted_at"
   add_index "feelings", ["experience_id"], name: "index_feelings_on_experience_id"
   add_index "feelings", ["feeling_card_id"], name: "index_feelings_on_feeling_card_id"
+  add_index "feelings", ["user_id"], name: "index_feelings_on_user_id"
 
   create_table "need_cards", force: true do |t|
     t.string   "category"
@@ -56,6 +60,7 @@ ActiveRecord::Schema.define(version: 20141219103655) do
   end
 
   create_table "needs", force: true do |t|
+    t.integer  "user_id"
     t.integer  "need_card_id"
     t.integer  "feeling_id"
     t.string   "category"
@@ -68,6 +73,7 @@ ActiveRecord::Schema.define(version: 20141219103655) do
   add_index "needs", ["deleted_at"], name: "index_needs_on_deleted_at"
   add_index "needs", ["feeling_id"], name: "index_needs_on_feeling_id"
   add_index "needs", ["need_card_id"], name: "index_needs_on_need_card_id"
+  add_index "needs", ["user_id"], name: "index_needs_on_user_id"
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

@@ -4,7 +4,7 @@ class FeelingsController < ApplicationController
   # GET /feelings
   # GET /feelings.json
   def index
-    @feelings = Feeling.all
+    @feelings = Feeling.where(user: current_user).all
   end
 
   # GET /feelings/1
@@ -14,7 +14,7 @@ class FeelingsController < ApplicationController
 
   # GET /feelings/new
   def new
-    notfinished_feelings = Feeling.get_not_finished_feelings
+    notfinished_feelings = Feeling.get_not_finished_feelings(current_user)
     puts "new #{notfinished_feelings.as_json}"
     @super_categories = FeelingCard.get_super_categories
     unless notfinished_feelings.empty?
@@ -92,6 +92,6 @@ class FeelingsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def feeling_params
-      params.require(:feeling).permit(:feeling_card_id, :super_category, :category, :vfeeling, :experience_id, :note)
+      params.require(:feeling).permit(:feeling_card_id, :super_category, :category, :vfeeling, :experience_id, :note).merge(user_id: current_user.id)
     end
 end

@@ -1,6 +1,7 @@
 class CreateNeeds < ActiveRecord::Migration
   def change
     create_table :needs do |t|
+      t.belongs_to :user, index: true
       t.belongs_to :need_card, index: true
       t.belongs_to :feeling, index: true
       t.string :category

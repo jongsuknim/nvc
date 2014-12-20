@@ -4,7 +4,7 @@ class NeedsController < ApplicationController
   # GET /needs
   # GET /needs.json
   def index
-    @needs = Need.all
+    @needs = Need.where(user: current_user).all
   end
 
   # GET /needs/1
@@ -14,7 +14,7 @@ class NeedsController < ApplicationController
 
   # GET /needs/new
   def new
-    not_finished_needs = Need.get_not_finished
+    not_finished_needs = Need.get_not_finished(current_user)
     not_finished_needs = not_finished_needs.where(feeling_id: params[:feeling_id]) if params[:feeling_id]
     @categories = NeedCard.get_categories
     if not_finished_needs.empty?
@@ -97,6 +97,6 @@ class NeedsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def need_params
       puts params.as_json
-      params.require(:need).permit(:category, :vneed, :feeling_id, :note)
+      params.require(:need).permit(:category, :vneed, :feeling_id, :note).merge(user_id: current_user.id)
     end
 end

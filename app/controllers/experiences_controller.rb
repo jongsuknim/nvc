@@ -4,7 +4,7 @@ class ExperiencesController < ApplicationController
   # GET /experiences
   # GET /experiences.json
   def index
-    @experiences = Experience.all
+    @experiences = Experience.where(user: current_user).all
   end
 
   # GET /experiences/1
@@ -29,7 +29,6 @@ class ExperiencesController < ApplicationController
 
     respond_to do |format|
       if @experience.save
-        puts UserNotifier.test.deliver
         format.html { redirect_to @experience, notice: 'Experience was successfully created.' }
         format.json { render :show, status: :created, location: @experience }
       else
@@ -71,6 +70,6 @@ class ExperiencesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def experience_params
-      params.require(:experience).permit(:observation, :request, :memo, :deleted_at, :vfeeling)
+      params.require(:experience).permit(:observation, :request, :memo, :deleted_at, :vfeeling).merge(user_id: current_user.id)
     end
 end
