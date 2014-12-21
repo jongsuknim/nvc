@@ -1,29 +1,23 @@
 <h1>Listing experiences</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th colspan="10">Observation</th>
-      <th colspan="10">Request</th>
-      <th colspan="10">Memo</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @experiences.each do |experience| %>
-      <tr>
-        <td><%= experience.observation %></td>
-        <td><%= experience.request %></td>
-        <td><%= experience.memo %></td>
-        <td><%= link_to 'Show', experience %></td>
-        <td><%= link_to 'Edit', edit_experience_path(experience) %></td>
-        <td><%= link_to 'Destroy', experience, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
+<% @experiences.each do |experience| %>
+    <%= distance_of_time_in_words( Time.now, experience.created_at) %> ago
+    <table>
+  <tr class="command_row"><td>
+    <%= link_to 'Show', experience %>
+    <%= link_to 'Edit', edit_experience_path(experience) %>
+    <%= link_to 'Destroy', experience, method: :delete, data: { confirm: 'Are you sure?' } %>
+  </td></tr>
+  <tr class="content_row"><td><%= experience.observation %></td></tr>
+      <tr class="content_row"><td>
+          <% experience.feelings.each do |feeling| %>
+              <%= render 'feelings/show', feeling: feeling %><br><br>
+          <% end %>
+      </td></tr>
+      <tr class="content_row"><td><%= experience.request %></td></tr>
+  <tr class="content_row"><td><%= experience.memo %></td></tr>
 </table>
+    <br>
+<% end %>
 
 <br>
-
-<%= link_to 'New Experience', new_experience_path %>

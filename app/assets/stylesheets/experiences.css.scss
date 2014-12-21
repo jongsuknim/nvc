@@ -1,3 +1,20 @@
 // Place all the styles related to the experiences controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+table {
+  border-collapse: collapse;
+}
+
+table tr td {
+  padding: 5px;
+  border: 1px solid black;
+}
+
+.command_row {
+  background: #e0f8f8
+}
+
+//.content_row {
+//  background: #f8b0f8
+//}

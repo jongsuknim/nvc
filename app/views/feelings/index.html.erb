@@ -1,33 +1,27 @@
 <h1>Listing feelings</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Super category</th>
-      <th>category</th>
-      <th>Feeling card</th>
-      <th>Experience</th>
-      <th>Note</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<% @feelings.each do |feeling| %>
+    <%= distance_of_time_in_words( Time.now, feeling.created_at) %> ago
+    <table>
+      <tr class="command_row"><td>
+        <%= link_to 'Show', feeling %>
+        <%= link_to 'Edit', edit_feeling_path(feeling) %>
+        <%= link_to 'Destroy', feeling, method: :delete, data: { confirm: 'Are you sure?' } %>
+      </td></tr>
+      <tr class="content_row"><td>
+        <%= feeling.feeling_card.title %>
+        (<%= feeling.note %>)
+      </td></tr>
 
-  <tbody>
-    <% @feelings.each do |feeling| %>
-      <tr>
-        <td style="padding-right:200px"><%= feeling.super_category %></td>
-        <td><%= feeling.category %></td>
-        <td><%= feeling.feeling_card %></td>
-        <td><%= feeling.experience %></td>
-        <td><%= feeling.note %></td>
-        <td><%= link_to 'Show', feeling %></td>
-        <td><%= link_to 'Edit', edit_feeling_path(feeling) %></td>
-        <td><%= link_to 'Destroy', feeling, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
+      <tr class="content_row"><td>
+        <strong>욕구:</strong>
+        <% feeling.needs.each do |need| %>
+            <%= render 'needs/show', need: need %><br><br>
+        <% end %>
+      </td></tr>
+    </table>
+    <br><br>
+<% end %>
 
 <%= link_to 'New Feeling', new_feeling_path %>
+<br>

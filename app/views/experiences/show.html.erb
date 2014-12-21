@@ -5,7 +5,10 @@
   <%= @experience.observation %>
 </p>
 
-<%= render 'feelings/floating_index', floating_feelings: @experience.feelings %>
+<strong>느낌 & 욕구:</strong><br>
+<% @experience.feelings.each do |feeling| %>
+    <%= render 'feelings/show', feeling: feeling %><br><br>
+<% end %>
 
 <p>
   <strong>Request:</strong>
@@ -15,11 +18,6 @@
 <p>
   <strong>Memo:</strong>
   <%= @experience.memo %>
-</p>
-
-<p>
-  <strong>Deleted at:</strong>
-  <%= @experience.deleted_at %>
 </p>
 
 

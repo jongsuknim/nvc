@@ -1,0 +1,6 @@
+<%= feeling.feeling_card.title %>
+(<%= feeling.note %>)
+
+<% feeling.needs.each do |need| %>
+    <br>    &rarr;  <%= render "needs/show", need: need %>
+<% end %>

@@ -4,7 +4,7 @@ class ExperiencesController < ApplicationController
   # GET /experiences
   # GET /experiences.json
   def index
-    @experiences = Experience.where(user: current_user).all
+    @experiences = Experience.where(user: current_user).all.order(created_at: :desc)
   end
 
   # GET /experiences/1

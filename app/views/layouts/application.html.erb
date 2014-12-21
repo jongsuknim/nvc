@@ -42,8 +42,8 @@
       <div class="container">
         <div id="user_nav">
           <% if user_signed_in? %>
-              Logged in as <strong><%= current_user.email %></strong>.
-              <%= link_to 'Edit profile', edit_user_registration_path %> |
+              <strong><%= current_user.email %></strong>.
+              <%= link_to 'Edit', edit_user_registration_path %> |
               <%= link_to "Logout", destroy_user_session_path, method: :delete %>
           <% else %>
               <%= link_to "Sign up", new_user_registration_path %> |
@@ -58,8 +58,8 @@
         </button>
         <div class="navbar-collapse collapse navbar-responsive-collapse">
           <ul class="nav navbar-nav">
-            <li><%= link_to "NewFeeling", new_feeling_path  %></li>
-            <li><%= link_to "NewExperiences", new_experience_path  %></li>
+            <li><%= link_to "느낌", new_feeling_path  %></li>
+            <li><%= link_to "정리하기", new_experience_path  %></li>
           </ul>
         </div>
         <div class="floating-feeling container">
