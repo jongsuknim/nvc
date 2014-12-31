@@ -25,9 +25,12 @@ class NeedsController < ApplicationController
       @needs =@need.get_needs
       @feeling_id = @need.feeling_id
     end
-    puts @feeling_id
-    @feeling_title = Feeling.find(@feeling_id).feeling_card.title if @feeling_id
-    puts @feeling_title
+    feeling = Feeling.includes(:feeling_card).find(@feeling_id) if @feeling_id
+    if feeling
+      @feeling_title = feeling.feeling_card.title
+      @feeling_note = feeling.note
+    end
+
   end
 
   # GET /needs/1/edit
