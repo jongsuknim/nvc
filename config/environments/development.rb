@@ -24,8 +24,8 @@ Rails.application.configure do
       port: 587,
       domain: "js.com",
       authentication: "plain",
-      user_name: "jongseok.park.mail",
-      password: "cis#9dj@#jsd12390pOKSEjgos",
+      user_name: ENV["MAIL_ACCOUNT_ID"],
+      password: ENV["MAIL_ACCOUNT_PASSWORD"],
       enable_starttls_auto: true
   }
 
